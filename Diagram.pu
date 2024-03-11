@@ -57,7 +57,7 @@ rectangle "_plant Plant" as Plant1 {
 }
 
 rectangle "_plc Controller" as Controller1 {
- FA5_SIGN_IN_ALT(inputs, "**Analog/Digital Inputs**: \n--\n Temperature_Button: bool \n--\n Start_Pause_Button: bool \n--\n Hatch_Lock_Switch: bool \n--\n Pressostat: bool \n--\n Tachometer: int \n--\n Thermistor: int")
+ FA5_SIGN_IN_ALT(inputs, "**Analog/Digital Inputs**: \n--\n Temperature_Button: bool \n--\n Start_Pause_Button: bool \n--\n Hatch_Lock_Switch: bool \n--\n Pressostat: bool \n--\n Tachometer: bool \n--\n Thermistor: int")
  FA5_COG(software, "**Control Software (Info Transformation)**: \n--\n Buttons/switches click control \n--\n Water temperature control \n--\n Water level control \n--\n Drum rotation control \n--\n Washing state control \n--\n Controlling the hatch lock")
  FA5_SIGN_OUT_ALT(outputs, "**Analog/Digital Outputs**:\n--\n Drum_State: int \n--\n Washing_Stage_LED: int \n--\n Temperature_LED: int \n--\n Error_LED: bool \n--\n Filling_Valve_State: bool \n--\n Hatch_Lock_State: bool \n--\n Drain_Pump_State: bool \n--\n Heater_State: bool" )
 }
