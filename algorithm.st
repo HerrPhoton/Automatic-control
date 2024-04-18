@@ -1,30 +1,41 @@
 PROGRAM Controller
 
     VAR
-        temperatures : ARRAY [30, 40, 60, 95] OF INT;
-        temperature_id : INT = 0;
+        temperature : INT := 30;
         washing_started : BOOL;
     END_VAR
 
     VAR_INPUT
-        temperature_button : BOOL;
+        (* BUTTONS *)
         start_pause_button : BOOL;
-        hatch_lock_switch : BOOL;
+        temperature_button : BOOL;
+        power_button : BOOL;
+
+        (* SENSORS *)
         pressostat : BOOL;
         tachometer : BOOL;
         thermistor : BOOL;
     END_VAR
 
 	VAR_OUTPUT
-        // =========== LEDs ===============
-		washing_state_leds : ARRAY [0..4] OF BOOL; // Is the specified washing status LED on
-		temperature_leds: ARRAY[0..3] OF BOOL;     // Is the specified temperature LED on
-		error_led : BOOL := FALSE;				   // Is the error LED on	
+        (* Temperature LEDs *)
+        temperature_led0 : BOOL;
+        temperature_led1 : BOOL;
+        temperature_led2 : BOOL;
+        temperature_led3 : BOOL;
 
-        // =========== Actuators ===============
-        drum_state: INT := 0;
+        (* Washing State LEDs *)
+		washing_state_led0 : BOOL;   
+        washing_state_led1 : BOOL;   
+        washing_state_led2 : BOOL; 
+        washing_state_led3 : BOOL;       
+        washing_state_led4 : BOOL;                  
+		error_led : BOOL;				                              	
+
+        (* Actuators *)
+        drum_state: INT;
         filling_valve_open: BOOL;
-        hatch_lock_open: BOOL := TRUE;
+        hatch_lock_open: BOOL;
         drain_pump_on: BOOL;
         heater_on: BOOL;
 	END_VAR
@@ -44,9 +55,26 @@ PROGRAM Controller
         END_STATE
 
         STATE Temperature_change
-            temperature_leds[temperature_id] := FALSE;
-            temperature_id := (temperature_id + 1) MOD 4;
-            temperature_leds[temperature_id] := TRUE;
+
+            CASE temperature OF
+                30: temperature_led0 := FALSE;
+                    temperature_led1 := TRUE;
+                    temperature := 40;
+
+                40: temperature_led1 := FALSE;
+                    temperature_led2 := TRUE;
+                    temperature := 60;
+
+                60: temperature_led2 := FALSE;
+                    temperature_led3 := TRUE;
+                    temperature := 95;
+
+                95: temperature_led2 := FALSE;
+                    temperature_led0 := TRUE;
+                    temperature := 30;
+
+            END_CASE
+
             SET STATE Wait;
         END_STATE
 
@@ -57,15 +85,9 @@ PROGRAM Controller
 
         STATE Start_washing
             washing_started := TRUE;
-            SET STATE WAIT;
+            SET STATE Wait;
         END_STATE
 
-    END_PROCESS
-
-    PROCESS Temperature_control
-    END_PROCESS
-
-    PROCESS Washing_program
     END_PROCESS
 	
 END_PROGRAM
