@@ -43,13 +43,13 @@ skinparam defaultTextAlignment center
 
 Cloud "_ucog Environment" as Env {
  Actor Users
- FA5_HAND_POINT_DOWN(action, "**Actions**: \n--\n Temperature_Button_clicked \n--\n Start_Pause_Button_clicked \n--\n Power_Button_clicked")
+ FA5_HAND_POINT_DOWN(action, "**Actions**: \n--\n Temperature_Button_clicked \n--\n Start_Button_clicked \n--\n Power_Button_clicked")
  FA5_COG(user_effect, "**Effects**")
  FA5_EYE(sensation, "**Sensation**: \n--\n Notification of the current washing process \n--\n Notification of the selected water temperature \n--\n Notification of an error in the system")
 }
 
 rectangle "_plant Plant" as Plant1 {
- FA5_SIGN_IN_ALT(Controls, "**Controls**: \n--\n Temperature_Button \n--\n Start_Pause_Button \n--\n Power_Button")
+ FA5_SIGN_IN_ALT(Controls, "**Controls**: \n--\n Temperature_Button \n--\n Start_Button \n--\n Power_Button")
  rectangle "_sensor_l \n **Sensors**:\n--\n Hatch_Lock_Switch \n--\n Tachometer \n--\n Pressostat \n--\n Thermistor" as Sensors
  FA5_COG(Effect, "**Reconfiguration and Transformation**: \n--\n Closing/opening the hatch \n--\n Rotation/stop of the drum \n--\n Water injection/pumping \n--\n Water heating")
  rectangle "_actuator_l \n **Actuators**: \n--\n Hatch_Lock_Device \n--\n Filling_valve \n--\n Drain_Pump \n--\n Heater \n--\n Drum" as Actuators
@@ -57,9 +57,9 @@ rectangle "_plant Plant" as Plant1 {
 }
 
 rectangle "_plc Controller" as Controller1 {
- FA5_SIGN_IN_ALT(inputs, "**Analog/Digital Inputs**: \n--\n Temperature_Button: bool \n--\n Start_Pause_Button: bool \n--\n Hatch_Lock_Switch: bool \n--\n Pressostat: bool \n--\n Tachometer: bool \n--\n Thermistor: int")
+ FA5_SIGN_IN_ALT(inputs, "**Analog/Digital Inputs**: \n--\n Temperature_Button: bool \n--\n Start_Button: bool \n--\n Power_Button: bool \n--\n Hatch_Lock_Switch: bool \n--\n Pressostat: bool \n--\n Tachometer: bool \n--\n Thermistor: int")
  FA5_COG(software, "**Control Software (Info Transformation)**: \n--\n Buttons/switches click control \n--\n Water temperature control \n--\n Water level control \n--\n Drum rotation control \n--\n Washing state control \n--\n Controlling the hatch lock")
- FA5_SIGN_OUT_ALT(outputs, "**Analog/Digital Outputs**:\n--\n Drum_State: int \n--\n Washing_Stage_LED: int \n--\n Temperature_LED: int \n--\n Error_LED: bool \n--\n Filling_Valve_Open: bool \n--\n Hatch_Lock_Open: bool \n--\n Drain_Pump_On: bool \n--\n Heater_On: bool" )
+ FA5_SIGN_OUT_ALT(outputs, "**Analog/Digital Outputs**:\n--\n Washing_Stage_LED0…Washing_Stage_LED4: bool \n--\n Temperature_LED0…Temperature_LED3: bool \n--\n Error_LED: bool \n--\n Filling_Valve_Open: bool \n--\n Hatch_Lock_Open: bool \n--\n Drain_Pump_On: bool \n--\n Heater_On: bool  \n--\n Drum_State: int")
 }
 
 '↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
